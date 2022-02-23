@@ -6,6 +6,7 @@ import WrongLetters from './components/WrongLetters'
 import Word from './components/Word'
 
 const words = ['application', 'programming', 'interface', 'wizard'];
+let selectedWord = words[Math.floor(Math.random() * words.length)]
 
 function App() {
 	const [playable, setPlayable] = useState(true)
@@ -18,7 +19,7 @@ function App() {
 			<div className="game-container">
 				<Figure />
 				<WrongLetters />
-				<Word />
+				<Word selectedWord={selectedWord} correctLetters={correctLetters} />
 			</div>
 		</>
 	);

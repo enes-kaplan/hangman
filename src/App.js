@@ -5,6 +5,7 @@ import Figure from './components/Figure'
 import WrongLetters from './components/WrongLetters'
 import Word from './components/Word'
 import Notification from './components/Notification'
+import Popup from './components/Popup'
 import { showNotification as show } from './helpers/helpers'
 
 const words = ['application', 'programming', 'interface', 'wizard']
@@ -43,6 +44,16 @@ function App() {
 		return () => window.removeEventListener('keydown', handleKeydown)
 	}, [correctLetters, wrongLetters, playable])
 
+	function playAgain() {
+		setPlayable(true)
+
+		// Empty arrays
+		setCorrectLetters([])
+		setWrongLetters([])
+
+		selectedWord = words[Math.floor(Math.random() * words.length)]
+	}
+
 	return (
 		<>
 			<Header />
@@ -52,6 +63,7 @@ function App() {
 				<Word selectedWord={selectedWord} correctLetters={correctLetters} />
 			</div>
 			<Notification showNotification={showNotification} />
+			<Popup correctLetters={correctLetters} wrongLetters={wrongLetters} selectedWord={selectedWord} setPlayable={setPlayable} playAgain={playAgain} />
 		</>
 	)
 }
